@@ -21,7 +21,6 @@ export default async function Index() {
   } = await supabase.auth.getUser();
 
 
-
   if (user) {
     // User is authenticated
     const { id, email } = user;
