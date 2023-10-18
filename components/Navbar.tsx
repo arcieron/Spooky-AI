@@ -37,7 +37,7 @@ export default async function Navbar() {
       <div className="flex gap-2 h-full">
         <Link href="/">
           {/*<h2 className="font-bold">SpookyAI</h2>*/}
-          <img src="/logo-contents/spooky.png" className={'max-h-12 w-full'} alt="SPOOKY-AI"/>
+          <img src="/logo-contents/spooky.png" className={'max-h-12 md:w-full w-2/3'} alt="SPOOKY-AI"/>
         </Link>
       </div>
       {user && (
