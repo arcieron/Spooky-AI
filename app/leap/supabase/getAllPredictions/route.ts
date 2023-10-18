@@ -1,6 +1,7 @@
 import {createRouteHandlerClient} from "@supabase/auth-helpers-nextjs";
 import {cookies} from "next/headers";
-import {Database} from "lucide-react";
+// import { Database } from "../../../types/supabase";
+import {Database} from "../../../../types/supabase";
 import {NextResponse} from "next/server";
 
 

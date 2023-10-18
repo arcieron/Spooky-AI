@@ -46,14 +46,19 @@ export default async function Index() {
   return redirect("overview/models/train");
 
 
-  const { data: models } = await supabase
-    .from("models")
-    .select(
-      `*, samples (
+  if(user){
+    const { data: models } = await supabase
+        .from("models")
+        .select(
+            `*, samples (
       *
     )`
-    )
-    .eq("user_id", user.id);
+        )
+        .eq("user_id", user?.id as string);
 
-  return <ClientSideModelsList serverModels={models ?? []} />;
+
+    return <ClientSideModelsList serverModels={models ?? []} />;
+  }
+
+
 }

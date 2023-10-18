@@ -24,7 +24,7 @@ const replicateApiKey = process.env.REPLICATE_API_KEY; // Make sure to add this 
 
 export async function POST(request: Request) {
 
-    function getBase64(file) {
+    function getBase64(file:any) {
         var reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function () {

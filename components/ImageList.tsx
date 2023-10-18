@@ -1,13 +1,13 @@
 import React from "react";
 
-const ImageList = ({images}) => {
+const ImageList = ({images}: any) => {
     // Check if the "images" array is empty
     if (images?.length === 0) {
         return <p>No images generated yet.</p>;
     }
 
     // Function to handle the image download
-    const handleDownload = async (imageUrl) => {
+    const handleDownload = async (imageUrl: any) => {
         const image = await fetch(imageUrl)
         const imageBlog = await image.blob()
         const imageURL = URL.createObjectURL(imageBlog)

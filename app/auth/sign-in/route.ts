@@ -18,15 +18,12 @@ export async function POST(request: Request) {
   })
 
   //Authenticate user
-  const {
-    data: {user},
-  } = await supabase.auth.getUser();
+
 
   // if (!user) {
   //   return NextResponse.json({}, {status: 401, statusText: "Unauthorized!"});
   // }
 
-  console.log("signup user: ",user)
   // if (user) {
   //   const { id: user_id } = user;
   //

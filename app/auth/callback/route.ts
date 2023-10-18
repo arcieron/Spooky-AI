@@ -26,8 +26,6 @@ export async function GET(request: NextRequest) {
   }
   console.log("code not fount", code)
 
-  c
-
   // URL to redirect to after sign in process completes
   return NextResponse.redirect(requestUrl.origin)
 }

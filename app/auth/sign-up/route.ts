@@ -20,7 +20,7 @@ export async function POST(request: Request) {
   //   },
   // })
 
-  const { user, error } = await supabase.auth.signUp({
+  const { error } = await supabase.auth.signUp({
     email,
     password,
     options: {
@@ -28,27 +28,6 @@ export async function POST(request: Request) {
       emailRedirectTo: `${requestUrl.origin}/auth/callback`,
     },
   })
-
-  // console.log("signup user: ",user)
-  // if (user) {
-  //   const { id: user_id } = user;
-
-
-    // Insert the user information into the "users" table in Supabase
-    // const { data, error: insertError } = await supabase
-    //     .from('users')
-    //     .upsert([
-    //       {
-    //         user_id,
-    //         email,
-    //       },
-    //     ], { onConflict: ['user_id'] }); // Use 'user_id' as the conflict resolution column
-    //
-    // if (insertError) {
-    //   console.log("Error inserting user data: ", insertError);
-    //   // Handle the error as needed
-    // }
-  // }
 
   if (error) {
     return NextResponse.redirect(

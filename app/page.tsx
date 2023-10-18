@@ -49,7 +49,7 @@ export default async function Index() {
       // Insert the user data into the "users" table
       const { data: newUser, error: insertError } = await supabase
           .from('users') // Use the correct table name "users"
-          .upsert([userData], { onConflict: ['id'] }); // Use 'id' as the conflict resolution column
+          .upsert([userData], ); // Use 'id' as the conflict resolution column
 
       if (insertError) {
         // Handle the insert error if it occurs
@@ -67,7 +67,7 @@ export default async function Index() {
         // Insert the credit data into the "credits" table
         const { data: newCreditRecord, error: creditInsertError } = await supabase
             .from('credits')
-            .insert([creditData], { onConflict: ['user_id'] }); // Use 'user_id' as the conflict resolution column
+            .insert([creditData]); // Use 'user_id' as the conflict resolution column
 
         if (creditInsertError) {
           // Handle the insert error for credits if it occurs

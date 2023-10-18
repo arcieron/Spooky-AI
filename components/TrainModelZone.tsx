@@ -112,7 +112,7 @@ export default function TrainModelZone() {
         formData.append("type", form.getValues("type"));
 
        try {
-           const  response  = await fetch("/leap/replicate", {
+           const  response: any  = await fetch("/leap/replicate", {
                method: "POST",
                body: formData,
            }).catch((e)=>{
@@ -358,7 +358,7 @@ export default function TrainModelZone() {
             </Form>
             <div>
                 <div className="text-xl font-bold text-center mt-4"> Spookies </div>
-                {allGeneratedImages?.length !== 0 | allGeneratedImages !== null ? (
+                {!(allGeneratedImages?.length === 0 || allGeneratedImages === null) ? (
                         <ImageList images={allGeneratedImages}/>
                     ) :
                     <div className="text-center text-gray-500 text-lg py-12">Your Generated Spookies will display

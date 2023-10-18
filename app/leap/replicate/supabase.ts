@@ -37,7 +37,7 @@ const uploadFile = async (user_id: string,  file: File) => {
     }
 };
 
-const createPrediction = async (user_id, image_url)=>{
+const createPrediction = async (user_id: any, image_url: any)=>{
     const supabase = createRouteHandlerClient<Database>({ cookies });
 
     const {data,  error } = await supabase
@@ -54,7 +54,7 @@ const createPrediction = async (user_id, image_url)=>{
 
 }
 
-const getAllPredictionsOfUser  = async (user_id)=>{
+const getAllPredictionsOfUser  = async (user_id: any)=>{
     const supabase = createRouteHandlerClient<Database>({ cookies });
     const { data, error } = await supabase
         .from('predictions')
