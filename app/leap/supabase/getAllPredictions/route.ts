@@ -3,28 +3,28 @@ import {cookies} from "next/headers";
 import {Database} from "../../../../types/supabase";
 import {NextResponse} from "next/server";
 
-async function getRandomImageName(supabase: any) {
-    try {
-        const folderPath = "costumes/"
-        const { data, error } = await supabase.storage.from("spooky-ai").list(folderPath);
+// async function getRandomImageName(supabase: any) {
+//     try {
+//         const folderPath = "costumes/"
+//         const { data, error } = await supabase.storage.from("spooky-ai").list(folderPath);
 
-        if (error) {
-            throw error;
-        }
+//         if (error) {
+//             throw error;
+//         }
 
-        // Extract file names from the data
-        const fileNames = data.map((item) => item.name);
+//         // Extract file names from the data
+//         const fileNames = data.map((item) => item.name);
 
-        // Pick a random file name from the array
-        const randomIndex = Math.floor(Math.random() * fileNames.length);
-        const randomImageName = fileNames[randomIndex];
+//         // Pick a random file name from the array
+//         const randomIndex = Math.floor(Math.random() * fileNames.length);
+//         const randomImageName = fileNames[randomIndex];
 
-        // console.log(`Random image name from folder '${folderPath}': ${randomImageName}`);
-        return randomImageName
-    } catch (error) {
-        console.error("Error getting random image name:", error.message);
-    }
-}
+//         // console.log(`Random image name from folder '${folderPath}': ${randomImageName}`);
+//         return randomImageName
+//     } catch (error:any) {
+//         console.error("Error getting random image name:", error.message);
+//     }
+// }
 
 export async function POST(request: Request) {
     console.log("request")
@@ -37,7 +37,7 @@ export async function POST(request: Request) {
         return NextResponse.json({}, {status: 401, statusText: "Unauthorized!"});
     }
 
-    getRandomImageName(supabase)
+    // getRandomImageName(supabase)
 
     try {
         const {data, error} = await supabase

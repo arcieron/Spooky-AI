@@ -20,7 +20,7 @@ async function getRandomImageName(supabase: any) {
         }
 
         // Extract file names from the data
-        const fileNames = data.map((item) => item.name);
+        const fileNames = data.map((item: any) => item.name);
 
         // Pick a random file name from the array
         const randomIndex = Math.floor(Math.random() * fileNames.length);
@@ -28,7 +28,7 @@ async function getRandomImageName(supabase: any) {
 
         // console.log(`Random image name from folder '${folderPath}': ${randomImageName}`);
         return randomImageName
-    } catch (error) {
+    } catch (error: any) {
         console.error("Error getting random image name:", error.message);
     }
 }
