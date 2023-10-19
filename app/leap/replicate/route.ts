@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 const stripeIsConfigured = process.env.NEXT_PUBLIC_STRIPE_IS_ENABLED;
 const replicateApiKey = process.env.REPLICATE_API_KEY; // Make sure to add this environment variable
 
-async function getRandomImageName(supabase: any, type = null) {
+async function getRandomImageName(supabase: any, type: string | null = null) {
     try {
         const folderPath = "costumes/"
         const { data, error } = await supabase.storage.from("spooky-ai").list(folderPath);
@@ -20,7 +20,7 @@ async function getRandomImageName(supabase: any, type = null) {
         }
 
         // Extract file names from the data
-        const fileNames = data.filter(i => (type && type !== 'unisex' ) ? i.name.includes(type) : true).map((item: any) => item.name);
+        const fileNames = data.filter((i: any) => (type && type !== 'unisex' ) ? i.name.includes(type) : true).map((item: any) => item.name);
 
         // Pick a random file name from the array
         const randomIndex = Math.floor(Math.random() * fileNames.length);
