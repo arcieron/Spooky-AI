@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 const stripeIsConfigured = process.env.NEXT_PUBLIC_STRIPE_IS_ENABLED;
 const replicateApiKey = process.env.REPLICATE_API_KEY; // Make sure to add this environment variable
 
-async function getRandomImageName(supabase: any) {
+async function getRandomImageName(supabase: any, type = null) {
     try {
         const folderPath = "costumes/"
         const { data, error } = await supabase.storage.from("spooky-ai").list(folderPath);
@@ -20,7 +20,7 @@ async function getRandomImageName(supabase: any) {
         }
 
         // Extract file names from the data
-        const fileNames = data.map((item: any) => item.name);
+        const fileNames = data.filter(i => (type && type !== 'unisex' ) ? i.name.includes(type) : true).map((item: any) => item.name);
 
         // Pick a random file name from the array
         const randomIndex = Math.floor(Math.random() * fileNames.length);
@@ -44,7 +44,6 @@ export async function POST(request: Request) {
     const incomingFormData = await request.formData();
     const images = incomingFormData.getAll("image") as File[];
     const supabase = createRouteHandlerClient<Database>({cookies});
-
 
     //Authenticate user
     const {
@@ -121,7 +120,7 @@ export async function POST(request: Request) {
         });
         // const randomNumber = randInt(supabase)
         const uploadedFileUrl = await uploadFile(user.id, images[0])
-        const randomImage = await getRandomImageName(supabase)
+        const randomImage = await getRandomImageName(supabase, incomingFormData.get('type'))
         let costume: string = await getPublicUrl(`costumes/${randomImage}`)
         let url2: string = "https://www.tasteofcinema.com/wp-content/uploads/2016/04/best-actors-of-our-generation-1024x627.jpg"
 

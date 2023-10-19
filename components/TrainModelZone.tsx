@@ -266,7 +266,7 @@ export default function TrainModelZone() {
                                     aria-label="man"
                                 />
                                 <Label
-                                    htmlFor="man"
+                                    htmlFor="male"
                                     className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
                                 >
                                     <FaMale className="mb-3 h-6 w-6"/>
@@ -276,7 +276,7 @@ export default function TrainModelZone() {
 
                             <div>
                                 <RadioGroupItem
-                                    value="woman"
+                                    value="female"
                                     id="woman"
                                     className="peer sr-only"
                                     aria-label="woman"
@@ -291,7 +291,7 @@ export default function TrainModelZone() {
                             </div>
                             <div>
                                 <RadioGroupItem
-                                    value="person"
+                                    value="unisex"
                                     id="person"
                                     className="peer sr-only"
                                     aria-label="person"
