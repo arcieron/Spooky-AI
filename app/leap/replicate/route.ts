@@ -10,16 +10,41 @@ export const dynamic = "force-dynamic";
 const stripeIsConfigured = process.env.NEXT_PUBLIC_STRIPE_IS_ENABLED;
 const replicateApiKey = process.env.REPLICATE_API_KEY; // Make sure to add this environment variable
 
-const randInt = () =>{
-    const min = 1;
-    const max = 6;
-    return  Math.floor(Math.random() * (max - min + 1)) + min;
+async function getRandomImageName(supabase: any) {
+    try {
+        const folderPath = "costumes/"
+        const { data, error } = await supabase.storage.from("spooky-ai").list(folderPath);
+
+        if (error) {
+            throw error;
+        }
+
+        // Extract file names from the data
+        const fileNames = data.map((item) => item.name);
+
+        // Pick a random file name from the array
+        const randomIndex = Math.floor(Math.random() * fileNames.length);
+        const randomImageName = fileNames[randomIndex];
+
+        // console.log(`Random image name from folder '${folderPath}': ${randomImageName}`);
+        return randomImageName
+    } catch (error) {
+        console.error("Error getting random image name:", error.message);
+    }
 }
+
+//
+// const randInt = (supabase: any) =>{
+//     const min = 1;
+//     const max = countFilesInFolder(supabase);
+//     return  Math.floor(Math.random() * (max - min + 1)) + min;
+// }
 
 export async function POST(request: Request) {
     const incomingFormData = await request.formData();
     const images = incomingFormData.getAll("image") as File[];
     const supabase = createRouteHandlerClient<Database>({cookies});
+
 
     //Authenticate user
     const {
@@ -94,9 +119,10 @@ export async function POST(request: Request) {
         const replicate = new Replicate({
             auth: process.env.REPLICATE_API_KEY,
         });
-        const randomNumber = randInt()
+        // const randomNumber = randInt(supabase)
         const uploadedFileUrl = await uploadFile(user.id, images[0])
-        let costume: string = await getPublicUrl(`costumes/${randomNumber}.png`)
+        const randomImage = await getRandomImageName(supabase)
+        let costume: string = await getPublicUrl(`costumes/${randomImage}`)
         let url2: string = "https://www.tasteofcinema.com/wp-content/uploads/2016/04/best-actors-of-our-generation-1024x627.jpg"
 
         const output = await replicate.run(
