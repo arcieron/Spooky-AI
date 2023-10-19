@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 const stripeIsConfigured = process.env.NEXT_PUBLIC_STRIPE_IS_ENABLED;
 const replicateApiKey = process.env.REPLICATE_API_KEY; // Make sure to add this environment variable
 
-async function getRandomImageName(supabase: any, type: string | null = null) {
+async function getRandomImageName(supabase: any, type: any = null) {
     try {
         const folderPath = "costumes/"
         const { data, error } = await supabase.storage.from("spooky-ai").list(folderPath);
