@@ -49,7 +49,7 @@ export default function PricingSection() {
 const pricingOptions = [
   {
     title: "Starter",
-    price: "1 Credit",
+    price: "2 Credit",
     originalPrice: "$19.99",
     discountedPrice: "Only $10.31",
     description: "",
@@ -59,7 +59,7 @@ const pricingOptions = [
   },
   {
     title: "Basic",
-    price: "3 Credits",
+    price: "5 Credits",
     originalPrice: "$34.99",
     discountedPrice: "Only $20.23",
     description: "",
