@@ -151,7 +151,7 @@ export async function POST(request: Request) {
         console.log({whichType});
         
         const randomImage = await getRandomImageName(supabase, incomingFormData.get('type'))
-        let costume: string = await getPublicUrl(`costumes/${randomImage}`)
+        let costume: string = await getPublicUrl(`costumes/${whichType}/${randomImage}`)
         let url2: string = "https://www.tasteofcinema.com/wp-content/uploads/2016/04/best-actors-of-our-generation-1024x627.jpg"
 
         const output = await replicate.run(
