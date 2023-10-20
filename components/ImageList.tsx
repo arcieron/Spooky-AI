@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ImageModal } from "./ImageModal";
+import { ImageModal } from "@/components/ImageModal";
 import { Button } from "@/components/ui/button"
 import {
     Dialog,
