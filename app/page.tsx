@@ -2,9 +2,7 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-
 import hero from "/public/hero-new.png";
-
 import { Button } from "@/components/ui/button";
 import ExplainerSection from "@/components/ExplainerSection";
 import PricingSection from "@/components/PricingSection";
@@ -117,7 +115,8 @@ export default async function Index() {
         </div>
       </div>
       <ExplainerSection />
-      <PricingSection />
+      {/* <PricingSection /> */}
+
       {/*<StripePricingTable user={user}/>*/}
     </div>
   );
